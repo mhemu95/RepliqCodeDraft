@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- home page -->    
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'assets' %}"> Assets </a>  
+    <span class="badge bg-primary rounded-pill"> {{asset_count}} </span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="#employees"> Employees </a>
+    <span class="badge bg-primary rounded-pill"> {{emp_count}} </span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="#tracker"> Asset Tracker </a>
+    <span class="badge bg-primary rounded-pill"> {{tracker_count}} </span>
+    </li>
+</ul>
+
+{% endblock content %}
+    

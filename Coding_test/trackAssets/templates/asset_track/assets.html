@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- Assets list -->
+
+{% for asset in asset_list %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{asset.asset_model}}</h5>
+      <p class="card-text"> <strong>service tag:</strong>  {{asset.service_tag}} </p>
+      <span> <strong>purchase date:</strong> {{asset.purchase_date}} </span>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock content %}
+    

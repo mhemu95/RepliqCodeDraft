@@ -36,7 +36,24 @@ class Employee(models.Model):
 
     class Meta:
         verbose_name = 'Employee'
-        verbose_name_plural = 'Emploies'
+        verbose_name_plural = 'Employees'
 
     def __str__(self):
         return self.name
+
+
+class AssetTracks(models.Model):
+    asset = models.ForeignKey(AssetType, on_delete=models.CASCADE)
+    taken_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    take_out_time = models.DateField(auto_now=False)
+    return_time = models.DateField(null=True, blank=True)
+    return_condition = models.CharField(max_length=20, null=True, blank=True)
+
+    class Meta:
+        db_table = 'asset_track'
+        managed = True
+        verbose_name_plural = 'Asset_Track'
+
+    def __str__(self):
+        return self.asset.asset_model
+
