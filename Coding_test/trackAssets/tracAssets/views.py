@@ -11,6 +11,12 @@ class AssetTypeView(APIView):
         serializer = AssetTypeSerializer(asset_type, many=True)
         return Response({'status':'success', 'payload':serializer.data})
 
+    def post(self, request):
+        serializer = AssetTypeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status':'success', 'message':'data posted successfully'})
+
 
 class EmployeeView(APIView):
     def get(self, request):
@@ -18,9 +24,21 @@ class EmployeeView(APIView):
         serializer = EmployeeSerializer(employees, many=True)
         return Response({'status':'success', 'payload':serializer.data})
 
+    def post(self, request):
+        serializer = EmployeeSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status':'success', 'message':'data posted successfully'})
+
 
 class TrackerView(APIView):
     def get(self, request):
         Tracker = AssetTracks.objects.all()
         serializer = AssetTracksSerializer(Tracker, many=True)
         return Response({'status':'success', 'payload':serializer.data})
+
+    def post(self, request):
+        serializer = AssetTracksSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status':'success', 'message':'data posted successfully'})

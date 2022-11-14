@@ -18,7 +18,7 @@ class AssetType(models.Model):
     class Meta:
         verbose_name = 'Asset'
         verbose_name_plural = 'Assets'
-        ordering = ['-purchase_date']
+        ordering = ['-id']
 
     def __str__(self):
         return self.asset_model
