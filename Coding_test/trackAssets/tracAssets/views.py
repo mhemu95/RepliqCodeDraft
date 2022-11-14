@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import AssetCategory, AssetType, Employee, AssetTracks
-from .serializers import AssetTypeSerializer, EmployeeSerializer, AssetTracksSerializer
+from .models import AssetCategory, AssetType, Employee, AssetTracks, Inventory
+from .serializers import AssetTypeSerializer, EmployeeSerializer, AssetTracksSerializer, InventorySerializer
 
 
 class AssetTypeView(APIView):
@@ -42,3 +42,19 @@ class TrackerView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response({'status':'success', 'message':'data posted successfully'})
+
+
+class IntentoryView(APIView):
+    def get(self, request):
+        inventory = Inventory.objects.all()
+        serializer = InventorySerializer(inventory, many=True)
+        if inventory.count() < 1 :
+            return Response({'status':'success', 'payload':'Inventory is zero'})
+
+        return Response({'status':'success', 'payload':serializer.data})
+
+    def post(self, request):
+        serializer = InventorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status':'success', 'message':'data posted successfully'})    

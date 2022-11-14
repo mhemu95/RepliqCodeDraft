@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import AssetType, Employee, AssetTracks
+from .models import AssetType, Employee, AssetTracks, Inventory
 
 class AssetTypeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,5 +25,16 @@ class AssetTracksSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         rep = super(AssetTracksSerializer, self).to_representation(instance)
-        rep['asset','taken_by'] = instance.asset.asset_model
+        rep['asset'] = instance.asset.asset_model
+        return rep
+
+
+class InventorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inventory
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        rep = super(InventorySerializer, self).to_representation(instance)
+        rep['asset_type'] = instance.asset_type.category_name
         return rep

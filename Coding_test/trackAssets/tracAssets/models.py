@@ -57,3 +57,16 @@ class AssetTracks(models.Model):
     def __str__(self):
         return self.asset.asset_model
 
+
+class Inventory(models.Model):
+    asset_type = models.ForeignKey(AssetCategory, on_delete=models.CASCADE)
+    in_stock = models.PositiveIntegerField()
+    left_for_check_out = models.PositiveIntegerField()
+    
+    class Meta:
+        db_table = 'inventory'
+        managed = True
+        verbose_name_plural = 'Inventory'
+
+    def __str__(self):
+        return self.asset_type.category_name + ' | ' + str(self.in_stock)
