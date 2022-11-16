@@ -5,6 +5,10 @@ from .models import AssetCategory, AssetType, Employee, AssetTracks, Inventory
 from .serializers import AssetTypeSerializer, EmployeeSerializer, AssetTracksSerializer, InventorySerializer
 
 
+def base(request):
+    return render(request, 'base.html')
+
+
 class AssetTypeView(APIView):
     def get(self, request):
         asset_type = AssetType.objects.filter(active=True)
