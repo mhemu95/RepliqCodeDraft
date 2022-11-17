@@ -1,19 +1,26 @@
 from django.shortcuts import render
+from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import AssetCategory, AssetType, Employee, AssetTracks, Inventory
 from .serializers import AssetTypeSerializer, EmployeeSerializer, AssetTracksSerializer, InventorySerializer
 
 
-def base(request):
-    return render(request, 'base.html')
+# def base(request):
+#     return render(request, 'front/home.html')
 
 
 class AssetTypeView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'front/home.html'
+
     def get(self, request):
-        asset_type = AssetType.objects.filter(active=True)
-        serializer = AssetTypeSerializer(asset_type, many=True)
-        return Response({'status':'success', 'payload':serializer.data})
+        queryset = AssetType.objects.filter(active=True)
+        return Response({'assets': queryset})
+
+        # asset_type = AssetType.objects.filter(active=True)
+        # serializer = AssetTypeSerializer(asset_type, many=True)
+        # return Response({'status':'success', 'payload':serializer.data})
 
     def post(self, request):
         serializer = AssetTypeSerializer(data=request.data)
