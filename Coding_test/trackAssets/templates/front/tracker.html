@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Tracker
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h3 class="text-center"> Tracker </h3>
+
+    {% for tr in tracker %}
+        <h3>Asset name: {{tr.asset}}</h3>
+        <p>
+            Taken by: {{tr.taken_by}}
+        </p>
+    {% endfor %}
+
+</div>    
+
+{% endblock content %}

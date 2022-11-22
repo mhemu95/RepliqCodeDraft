@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Assets
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h3 class="text-center"> Asssets </h3>
+
+    {% for asset in assets %}
+        <p>{{asset.asset_model}}</p>
+    {% endfor %}
+
+</div>    
+
+{% endblock content %}

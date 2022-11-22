@@ -6,13 +6,14 @@ from .models import AssetCategory, AssetType, Employee, AssetTracks, Inventory
 from .serializers import AssetTypeSerializer, EmployeeSerializer, AssetTracksSerializer, InventorySerializer
 
 
-# def base(request):
-#     return render(request, 'front/home.html')
+def home(request):
+
+    return render(request, 'front/home.html')
 
 
 class AssetTypeView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'front/home.html'
+    template_name = 'front/assets.html'
 
     def get(self, request):
         queryset = AssetType.objects.filter(active=True)
@@ -43,9 +44,14 @@ class EmployeeView(APIView):
 
 
 class TrackerView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'front/tracker.html'
+
     def get(self, request):
         Tracker = AssetTracks.objects.all()
-        serializer = AssetTracksSerializer(Tracker, many=True)
+        return Response({'tracker': Tracker})
+
+        #serializer = AssetTracksSerializer(Tracker, many=True)
         return Response({'status':'success', 'payload':serializer.data})
 
     def post(self, request):

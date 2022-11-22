@@ -6,26 +6,10 @@
 
 {% block content %}
 <div class="container">
-    <h3 class="text-center">Assets</h3>
-
-    {% for asset in assets %}
-        <div class="card-deck mb-3 text-center">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                <h4 class="my-0 font-weight-normal"> {{asset.category}} </h4>
-                </div>
-                <div class="card-body">
-                <!--<h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>-->
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li> {{asset.asset_model}} </li>
-                    <li> {{asset.service_tag}} </li>
-                    <li> {{asset.purchase_date}} </li>
-                </ul>
-                <!-- <button type="button" class="btn btn-lg btn-block btn-primary">Get started</button> -->
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+    <h3 class="text-center"> Welcome to Track the asset </h3>
+    <div>
+        <a href=" {% url 'tracker' %} ">Tracker</a>
+    </div>
 
 </div>    
 
